@@ -1,0 +1,2 @@
+rootProject.name='RwAndroidTutorial'
+include ':app'

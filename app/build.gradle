@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
+
+  defaultConfig {
+    applicationId "com.raywenderlich.android.runtracking"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  buildFeatures {
+    viewBinding true
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  // Kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+  // Support Libraries
+  implementation 'androidx.appcompat:appcompat:1.2.0'
+  implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+  // Testing Dependencies
+  testImplementation 'junit:junit:4.13.1'
+  androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+  // TUTORIAL DEPENDENCIES HERE
+
+  // Google Map SDK
+  implementation 'com.google.android.gms:play-services-maps:17.0.1'
+
+  // EasyPermissions
+  implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
+
+  // Location
+  implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+  // Room
+  def room_version = "2.3.0"
+  implementation "androidx.room:room-runtime:$room_version"
+  kapt "androidx.room:room-compiler:$room_version"
+
+  // Room (optional dependency) - Kotlin Extensions and Coroutines support for Room
+  implementation "androidx.room:room-ktx:$room_version"
+
+  // Lifecycle components
+  implementation "androidx.activity:activity-ktx:1.1.0"
+  implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+  implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+}
